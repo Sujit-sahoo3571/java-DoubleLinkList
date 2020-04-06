@@ -1,0 +1,131 @@
+package Dobly_Add;
+
+public class Dobbly_Linkled_list {
+
+	class Node{
+		int data;
+		Node next;
+		Node prev;
+		
+		public Node(int data)
+		{
+			this.data = data;
+		}
+		
+	}
+	Node head = null,tail=null;
+	public void AddNode(int data)
+	{  
+		 Node newnode= new Node(data);
+		 if(head == null)
+		 {head = tail = newnode;
+		  head.prev=null;
+		  tail.next=null;
+		 }
+		 else {
+			 tail.next = newnode;
+			 newnode.prev =tail;
+			 tail=newnode;
+			 tail.next = null;
+		 }
+		 System.out.println("  Node Added ");
+		 }
+	
+	public void DeleteFirst() {
+		 if(head == null) {
+			//System.out.println("Node is empty");
+			return;
+		    }
+		else { 
+			if(head !=tail) {
+			head=head.next;
+			head.prev=null;
+			
+		     }
+		else
+			head = tail = null;
+			
+		}
+		
+	}
+	public int MaxNode() {
+		int max =head.data;
+		Node curr = head;
+		if(head==null)
+			{ System.out.println(" list empty nothing to check");
+			return 0;
+			}
+		else {
+			while(curr != null) {
+				if(curr.data >max)
+					max=curr.data;
+				curr = curr.next;
+			}
+			return max;
+		}
+		
+	}
+	
+	public int MinNode() {
+		int min  =head.data;
+		Node curr = head;
+		if(head==null)
+			{ System.out.println(" list empty nothing to check");
+			return 0;
+			}
+		else {
+			while(curr != null) {
+				if(curr.data <min)
+					min=curr.data;
+				curr = curr.next;
+			}
+			return min;
+		}
+		
+	}
+	public void display() {
+	 Node	curr =head;
+		if(head == null)
+		{ 
+
+			System.out.println(" List is empty ");
+			return;
+			
+		}
+		else {
+	        while(curr !=null) {
+
+				System.out.println("  "+curr.data);
+				curr = curr.next;
+				
+			} 
+	        System.out.println();
+		}
+	}
+	
+		
+	public static void main(String[] args) {
+	
+		Dobbly_Linkled_list nlist = new Dobbly_Linkled_list();
+		nlist.AddNode(2);
+		nlist.AddNode(3);
+		nlist.AddNode(4);
+		nlist.AddNode(5);
+		nlist.AddNode(6);
+		nlist.AddNode(7);
+		nlist.AddNode(78);
+		System.out.println("Element in List ");
+		nlist.display();
+	
+		System.out.println("Minimum Number = "+nlist.MinNode());
+		
+		System.out.println("Maximum Number = "+nlist.MaxNode());
+		
+		while(nlist.head != null) {
+			nlist.DeleteFirst();
+			nlist.display();
+			
+		}
+	}
+
+}
