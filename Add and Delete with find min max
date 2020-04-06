@@ -1,5 +1,6 @@
 package Dobly_Add;
 
+import java.util.Scanner;
 public class Dobbly_Linkled_list {
 
 	class Node{
@@ -107,13 +108,16 @@ public class Dobbly_Linkled_list {
 	public static void main(String[] args) {
 	
 		Dobbly_Linkled_list nlist = new Dobbly_Linkled_list();
-		nlist.AddNode(2);
-		nlist.AddNode(3);
-		nlist.AddNode(4);
-		nlist.AddNode(5);
-		nlist.AddNode(6);
-		nlist.AddNode(7);
-		nlist.AddNode(78);
+	Scanner sc = new Scanner(System.in);
+		int i=0,n,val;
+		System.out.println("\n Enter how many times to Enter ");
+		n =sc.nextInt();
+		  
+		for(i=0;i<n;i++)
+		{  System.out.println("\n Enter data in int value ");
+			val = sc.nextInt();	
+		    nlist.AddNode(val);
+	}
 		System.out.println("Element in List ");
 		nlist.display();
 	
