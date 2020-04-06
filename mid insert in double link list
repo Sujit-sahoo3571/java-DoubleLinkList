@@ -1,0 +1,102 @@
+package Dobly_Add;
+
+import java.util.Scanner;
+
+public class MidInsert {
+
+	int size=0;
+	class Node{
+		int data;
+		Node next;
+		Node prev;
+		
+		public Node(int data)
+		{
+			this.data = data;
+		}
+		
+	}
+	Node head = null,tail=null;
+	public void AddNode(int data)
+	{  
+		 Node newnode= new Node(data);
+		 if(head == null)
+		 {head = tail = newnode;
+		  head.prev=null;
+		  tail.next=null;
+		 }
+		 else {
+			 tail.next = newnode;
+			 newnode.prev =tail;
+			 tail=newnode;
+			 tail.next = null;
+		 }
+		 System.out.println("  Node Added ");
+    }
+	
+	public void MidI(int data) {
+		Node newnode = new Node (data);
+		if(head == null || head == tail )
+			return;
+		else {
+			Node curr = head;
+			int mid = (size%2 == 0)?(size/2): ( (size+1) /2);
+			for(int i=1;i<mid;i++) 
+				curr = curr.next;
+			newnode.prev = curr;
+			newnode.next = curr.next;
+			curr.next.prev = newnode;
+			curr.next = newnode;
+		}
+	}
+
+	
+	
+	
+public void display() {
+		
+	 Node	curr =head;
+		if(head == null)
+		{ 
+
+			System.out.println(" List is empty ");
+			return;
+			
+		}
+		else {
+	        while(curr !=null) {
+	        	size++;
+				System.out.println("  "+curr.data);
+				curr = curr.next;
+				
+			} 
+	        System.out.println();
+		}
+	}
+	
+		
+	public static void main(String[] args) {
+	
+		MidInsert nlist = new MidInsert();
+	Scanner sc = new Scanner(System.in);
+		int i=0,n,val;
+		System.out.println("\n Enter how many times to Enter ");
+		n =sc.nextInt();
+		System.out.println("\n Enter value to insert at mid position ");
+		int num =sc.nextInt();
+		  
+		for(i=0;i<n;i++)
+		{  System.out.println("\n Enter data in int value ");
+			val = sc.nextInt();	
+		    nlist.AddNode(val);
+	}
+		System.out.println("Element in List ");
+		nlist.display();
+	  
+		nlist.MidI(num);
+		nlist.display();
+	  
+		
+	}
+
+}
