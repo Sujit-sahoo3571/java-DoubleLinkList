@@ -1,0 +1,141 @@
+package Dobly_Add;
+
+import java.util.Scanner;
+
+public class search {
+	int size=0;
+	class Node{
+		int data;
+		Node next;
+		Node prev;
+		
+		public Node(int data)
+		{
+			this.data = data;
+		}
+		
+	}
+	Node head = null,tail=null;
+	public void AddNode(int data)
+	{  
+		 Node newnode= new Node(data);
+		 if(head == null)
+		 {head = tail = newnode;
+		  head.prev=null;
+		  tail.next=null;
+		 }
+		 else {
+			 tail.next = newnode;
+			 newnode.prev =tail;
+			 tail=newnode;
+			 tail.next = null;
+		 }
+		 System.out.println("  Node Added ");
+    }
+	
+	public boolean srch(int val) {
+		Node curr; int i=0;
+		if(head == null)
+		{
+			System.out.println("\n Empty ");
+			return false;
+		}
+		else {  
+			
+			for(curr = head ;curr !=null ;curr = curr.next) {
+				i++;
+				if(curr.data == val)
+				{return true;
+				}
+				
+				}
+			return false;
+			}
+		}
+
+	
+	
+	
+	
+	
+	
+	public void MidI() {
+	       
+		int mid = (size%2 == 0)?(size/2): ( (size+1) /2);
+		Node curr;
+		if(head == null || head == tail )
+			{   
+			head = null;
+			return;
+			}
+		
+			else { 
+				
+				if (size == 2)
+				{
+					curr = head;
+					head = head.next;
+					curr = null;
+				}
+				else { curr = head;
+			for(int i=1;i<mid;i++) 
+				curr = curr.next;
+			Node index = curr;
+			 curr.prev.next = curr.next;
+			 curr.next.prev = curr.prev;
+			 index = null;
+				
+				}
+			}
+	}
+
+	
+	
+	
+public void display() {
+		
+	 Node	curr =head;
+		if(head == null)
+		{ System.out.println(" List is empty ");
+			return;
+			
+		}
+		else {
+	        while(curr !=null) {
+	        	size++;
+				System.out.println("  "+curr.data);
+				curr = curr.next;
+				
+		 	} 
+	        System.out.println();
+		}
+	}
+	
+		
+	public static void main(String[] args) {
+	
+	search nlist = new search();
+	Scanner sc = new Scanner(System.in);
+		int i=0,n,val;
+		System.out.println("\n Enter how many times to Enter ");
+		n =sc.nextInt();
+		  
+		for(i=0;i<n;i++)
+		{  System.out.println("\n Enter data in int value ");
+			val = sc.nextInt();	
+		    nlist.AddNode(val);
+	}
+		System.out.println("Element in List ");
+		nlist.display();
+	  
+		 
+		if(nlist.srch(56)) {
+			System.out.println("yes ");
+		} else
+				System.out.println(" NO  ");
+		
+		nlist.MidI();
+		nlist.display();
+	 
+	}
+}
