@@ -1,0 +1,130 @@
+package Dobly_Add;
+import java.util.Scanner;
+
+public class ReverseD {
+	int size=0;
+	class Node{
+		int data;
+		Node next;
+		Node prev;
+		
+		public Node(int data)
+		{
+			this.data = data;
+		}
+		
+	}
+	Node head = null,tail=null;
+	public void AddNode(int data)
+	{  
+		 Node newnode= new Node(data);
+		 if(head == null)
+		 {head = tail = newnode;
+		  head.prev=null;
+		  tail.next=null;
+		 }
+		 else {
+			 tail.next = newnode;
+			 newnode.prev =tail;
+			 tail=newnode;
+			 tail.next = null;
+		 }
+		 System.out.println("  Node Added ");
+    }
+	
+public void Rever() {
+	Node temp=null,current=head;
+	
+    while(current != null) {  
+        temp = current.next;  
+        current.next = current.prev;  
+        current.prev = temp;  
+        current = current.prev;  
+    }  
+    //Swap the head and tail pointers.  
+    temp = head;  
+    head = tail;  
+    tail = temp;  
+}  
+	
+public void DelBeg() {
+	if(head == null)
+	{
+		return;
+	}
+	else {
+		head = head.next;
+		head.prev = null;
+	}
+}
+
+
+public void BegIns(int data) {
+	Node newnode = new Node(data);
+	
+	if(head == null)
+	{
+		return;
+	}
+	else { newnode.next = head;
+	      head.prev=newnode;
+	 		head = newnode;
+	 		head.prev = null;
+	}
+	
+}
+
+
+	
+public void display() {
+		
+	 Node	curr =head;
+		if(head == null)
+		{ 
+
+			System.out.println(" List is empty ");
+			return;
+			
+		}
+		else {
+	        while(curr !=null) {
+	        	size++;
+				System.out.println("  "+curr.data);
+				curr = curr.next;
+				
+			} 
+	        System.out.println();
+		}
+	}
+	
+		
+	public static void main(String[] args) {
+	
+		ReverseD nlist = new ReverseD();
+	Scanner sc = new Scanner(System.in);
+		int i=0,n,val;
+		System.out.println("\n Enter how many times to Enter ");
+		n =sc.nextInt();
+		  
+		for(i=0;i<n;i++)
+		{  System.out.println("\n Enter data in int value ");
+			val = sc.nextInt();	
+		    nlist.AddNode(val);
+	}
+		System.out.println("Element in List ");
+		nlist.display();
+	  
+	nlist.Rever();
+		nlist.display();
+	  
+		nlist.DelBeg();
+		nlist.display();
+		
+		nlist.BegIns(56);
+		nlist.display();
+		nlist.BegIns(65);
+		nlist.display();
+		
+	}
+
+}
